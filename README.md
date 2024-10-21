@@ -1,1 +1,2 @@
 # odin-library
+This is a project from The Odin Project where the goal of this project is to practice working with modals, practicing with javascript objects; it's a library where user can store book records with fields like its title, author, number of pages and whether the user has read it or not, and also buttons to delete or modify the read status of the book; the data will all be erased each page refresh as storage isn't the goal of this project. I used ES2015 classes to create this project, as I'm familiar with classes and objects in Java.
