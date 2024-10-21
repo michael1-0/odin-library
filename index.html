@@ -8,6 +8,33 @@
     <script src="./script.js" defer></script>
 </head>
 <body>
-    
+    <dialog>
+        <form action="/submit-form" method="dialog">
+            <label for="bookTitle">Book Title:</label><br>
+            <input type="text" id="bookTitle" name="bookTitle" required><br>
+
+            <label for="authorName">Author:</label><br>
+            <input type="text" id="authorName" name="authorName" required><br>
+
+            <label for="noOfPages">Number of Pages:</label><br>
+            <input type="number" id="noOfPages" name="noOfPages" min="0"><br>
+
+            <p>Have Read:</p>
+            <input type="radio" id="isReadTrue" name="isRead" value="true"/>
+            <label for="isReadTrue">True</label><br>
+            <input type="radio" id="isReadFalse" name="isRead" value="false" checked/>
+            <label for="isReadFalse">False</label><br><br>
+
+            <input type="submit" value="Submit">
+            <button type="button" class="close-modal">Cancel</button>
+        </form>
+    </dialog>
+    <main>
+         <button class="show-modal">New Book</button>
+         <div class="text-new">New books will show here; to add, click the button above.</div>
+         <div class="books-container">
+            
+         </div>
+    </main>
 </body>
 </html>
