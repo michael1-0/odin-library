@@ -9,7 +9,7 @@
 </head>
 <body>
     <dialog>
-        <form action="/submit-form" method="dialog">
+        <form novalidate>
             <label for="bookTitle">Book Title:</label><br>
             <input type="text" id="bookTitle" name="bookTitle" required><br>
 
@@ -17,7 +17,7 @@
             <input type="text" id="authorName" name="authorName" required><br>
 
             <label for="noOfPages">Number of Pages:</label><br>
-            <input type="number" id="noOfPages" name="noOfPages" min="0"><br>
+            <input type="number" id="noOfPages" name="noOfPages" required min="10"><br>
 
             <p>Have Read:</p>
             <input type="radio" id="isReadTrue" name="isRead" value="true"/>

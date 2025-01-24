@@ -171,3 +171,8 @@ main .text-new {
     color: white;
     margin-left: 10px;
 }
+
+input:invalid {
+    border-radius: 4px;
+    border-color: red;
+}

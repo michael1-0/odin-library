@@ -10,7 +10,47 @@ openModal.addEventListener("click", () => {
     resetModalContent();
     modal.showModal();
 });
-form.addEventListener("submit", () => {
+document.getElementById("bookTitle").addEventListener("input", () => {
+    const inputBookTitle = document.getElementById("bookTitle");
+    inputBookTitle.setCustomValidity("");
+
+    if (inputBookTitle.validity.valueMissing) {
+        inputBookTitle.setCustomValidity("Please input the book title");
+        inputBookTitle.reportValidity();
+    } 
+})
+document.getElementById("authorName").addEventListener("input", () => {
+    const inputAuthorName = document.getElementById("authorName");
+    inputAuthorName.setCustomValidity("");
+
+    if (inputAuthorName.validity.valueMissing) {
+        inputAuthorName.setCustomValidity("Please input the name of author");
+        inputAuthorName.reportValidity();
+    } 
+})
+document.getElementById("noOfPages").addEventListener("input", () => {
+    const inputNoOfPages = document.getElementById("noOfPages");
+    inputNoOfPages.setCustomValidity("");
+
+    if (inputNoOfPages.validity.valueMissing) {
+        inputNoOfPages.setCustomValidity("Please input the number of pages");
+        inputNoOfPages.reportValidity();
+    } else if (inputNoOfPages.validity.typeMismatch) {
+        inputNoOfPages.setCustomValidity("Please input whole numbers only");
+        inputNoOfPages.reportValidity();
+    } else if (inputNoOfPages.validity.rangeUnderflow) {
+        inputNoOfPages.setCustomValidity("Pages must be 10 or greater");
+        inputNoOfPages.reportValidity();
+    }
+})
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+  
+    // constraint validation
+    if (!isValid()) {
+        return;
+    }
+
     if (document.querySelector(".text-new")) {
         document.querySelector(".text-new").remove();
     }
@@ -20,7 +60,7 @@ form.addEventListener("submit", () => {
     } else {
         isRead = false;
     }
-
+    
     const book = new Book(
         indexCounter,
         document.getElementById("bookTitle").value,
@@ -36,6 +76,39 @@ closeModal.addEventListener("click", () => {
     modal.close();
 })
 
+function isValid() {
+    const inputBookTitle = document.getElementById("bookTitle");
+    const inputAuthorName = document.getElementById("authorName");
+    const inputNoOfPages = document.getElementById("noOfPages");
+
+    if (inputBookTitle.validity.valueMissing) {
+        inputBookTitle.setCustomValidity("Please input the book title");
+       inputBookTitle.reportValidity();
+        return false;
+    } 
+
+    if (inputAuthorName.validity.valueMissing) {
+        inputAuthorName.setCustomValidity("Please input the name of author");
+        inputAuthorName.reportValidity();
+        return false;
+    } 
+
+    if (inputNoOfPages.validity.valueMissing) {
+        inputNoOfPages.setCustomValidity("Please input the number of pages");
+        inputNoOfPages.reportValidity();
+        return false;
+    } else if (inputNoOfPages.validity.typeMismatch) {
+        inputNoOfPages.setCustomValidity("Please input whole numbers only");
+        inputNoOfPages.reportValidity();
+        return false;
+    } else if (inputNoOfPages.validity.rangeUnderflow) {
+        inputNoOfPages.setCustomValidity("Pages must be 10 or greater");
+        inputNoOfPages.reportValidity();
+        return false;
+    }
+
+    return true;
+}
 
 class Book {
     constructor(index, title, author, noOfPages = 0, isRead = false) {
@@ -113,6 +186,7 @@ function insertBookToDom(bookObj) {
         deleteBookButton
     );
 
+    modal.close();
     bookContainer.appendChild(divBook);
     indexCounter++;
 }
